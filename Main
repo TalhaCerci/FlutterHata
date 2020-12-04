@@ -1,0 +1,82 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class Home1 extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home1> {
+  List dataList1 = [];
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.brown[50],
+        appBar: AppBar(
+          title: Text(''),
+          backgroundColor: Colors.green,
+          elevation: 0.0,
+          bottom: TabBar(
+            tabs: [
+              Tab(text: "1"),
+              Tab(text: "2"),
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text('Çıkış'),
+              onPressed: () async {},
+            ),
+          ],
+        ),
+        body: TabBarView(
+          children: [
+            Column(children: <Widget>[
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  children: List.generate(
+                    dataList1.length,
+                    (index) {
+                      return Container(
+                        child: CardUI(
+                          dataList1[index].UrunAdi,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ]),
+          ],
+        ),
+      ),
+    ));
+  }
+
+  Widget CardUI(var UrunAdi) {
+    return Card(
+      margin: EdgeInsets.all(15),
+      color: Colors.blue,
+      child: Container(
+        color: Colors.white,
+        margin: EdgeInsets.all(1.5),
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: <Widget>[
+            Text(
+              UrunAdi,
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
